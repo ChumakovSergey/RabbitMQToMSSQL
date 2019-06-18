@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RabbitMQToMSSQL.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="hostname" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="virtualhost" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/</Value>
+    </Setting>
+    <Setting Name="port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5672</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">guest</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">guest</Value>
+    </Setting>
+    <Setting Name="exchangeName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">exchange name</Value>
+    </Setting>
+    <Setting Name="queueName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">queue name</Value>
+    </Setting>
+    <Setting Name="MSSQLSRV_ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MSSQLSRV_UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MSSQLSRV_Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MSSQLSRV_DBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MSSQLSRV_FunctionName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ErrorLogPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%HOMEPATH%\Desktop\Error.log</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

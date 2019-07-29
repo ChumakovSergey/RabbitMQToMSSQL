@@ -85,7 +85,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("exchange name")]
+        [global::System.Configuration.DefaultSettingValueAttribute("exchange_name")]
         public string exchangeName {
             get {
                 return ((string)(this["exchangeName"]));
@@ -97,7 +97,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("queue name")]
+        [global::System.Configuration.DefaultSettingValueAttribute("queue_name")]
         public string queueName {
             get {
                 return ((string)(this["queueName"]));
@@ -169,7 +169,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%HOMEPATH%\\Desktop\\Error.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Error.log")]
         public string ErrorLogPath {
             get {
                 return ((string)(this["ErrorLogPath"]));

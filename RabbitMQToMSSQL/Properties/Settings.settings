@@ -18,10 +18,10 @@
       <Value Profile="(Default)">guest</Value>
     </Setting>
     <Setting Name="exchangeName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">exchange name</Value>
+      <Value Profile="(Default)">exchange_name</Value>
     </Setting>
     <Setting Name="queueName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">queue name</Value>
+      <Value Profile="(Default)">queue_name</Value>
     </Setting>
     <Setting Name="MSSQLSRV_ServerName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -39,7 +39,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="ErrorLogPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%HOMEPATH%\Desktop\Error.log</Value>
+      <Value Profile="(Default)">C:\Error.log</Value>
     </Setting>
   </Settings>
 </SettingsFile>

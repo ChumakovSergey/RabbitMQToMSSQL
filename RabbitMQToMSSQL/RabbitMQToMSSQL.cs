@@ -26,10 +26,10 @@ namespace RabbitMQToMSSQL
 
         protected override void OnStart(string[] args)
         {
-            db = new SQLDB(Properties.Settings.Default.MSSQLSRV_ServerName, Properties.Settings.Default.MSSQLSRV_DBName, Properties.Settings.Default.MSSQLSRV_UserName, Properties.Settings.Default.MSSQLSRV_Password);
-
             try
             {
+                //db = new SQLDB(Properties.Settings.Default.MSSQLSRV_ServerName, Properties.Settings.Default.MSSQLSRV_DBName, Properties.Settings.Default.MSSQLSRV_UserName, Properties.Settings.Default.MSSQLSRV_Password);
+
                 rabbit = new RabbitMQ_Connect(
                     Callback,
                     Properties.Settings.Default.hostname,

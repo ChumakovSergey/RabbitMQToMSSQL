@@ -59,7 +59,7 @@ namespace RabbitMQToMSSQL
         public void Start(bool autoAck)
         {
             this.channel = this.connection.CreateModel();
-            EventingBasicConsumer consumer = new EventingBasicConsumer(this.connection.CreateModel());
+            EventingBasicConsumer consumer = new EventingBasicConsumer(this.channel);
             consumer.Received += (model, ea) => { this.callback(this, model, ea); };
             channel.BasicConsume(queue: this.queueName,
                                  autoAck: autoAck,
@@ -79,10 +79,9 @@ namespace RabbitMQToMSSQL
                 return;
 
             byte[] body = Encoding.UTF8.GetBytes(message);
-            IModel channel = this.connection.CreateModel();
             try
             {
-                channel.BasicPublish(exchange: this.exchangeName,
+                this.channel.BasicPublish(exchange: this.exchangeName,
                                      routingKey: prop.ReplyTo,
                                      basicProperties: prop,
                                      body: body);

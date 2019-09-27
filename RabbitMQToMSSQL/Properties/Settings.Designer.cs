@@ -26,84 +26,84 @@ namespace RabbitMQToMSSQL.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string hostname {
+        public string RabbitMQ_HostName {
             get {
-                return ((string)(this["hostname"]));
+                return ((string)(this["RabbitMQ_HostName"]));
             }
             set {
-                this["hostname"] = value;
+                this["RabbitMQ_HostName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/")]
-        public string virtualhost {
+        public string RabbitMQ_VirtualHost {
             get {
-                return ((string)(this["virtualhost"]));
+                return ((string)(this["RabbitMQ_VirtualHost"]));
             }
             set {
-                this["virtualhost"] = value;
+                this["RabbitMQ_VirtualHost"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5672")]
-        public int port {
+        public int RabbitMQ_Port {
             get {
-                return ((int)(this["port"]));
+                return ((int)(this["RabbitMQ_Port"]));
             }
             set {
-                this["port"] = value;
+                this["RabbitMQ_Port"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("guest")]
-        public string username {
+        public string RabbitMQ_UserName {
             get {
-                return ((string)(this["username"]));
+                return ((string)(this["RabbitMQ_UserName"]));
             }
             set {
-                this["username"] = value;
+                this["RabbitMQ_UserName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("guest")]
-        public string password {
+        public string RabbitMQ_Password {
             get {
-                return ((string)(this["password"]));
+                return ((string)(this["RabbitMQ_Password"]));
             }
             set {
-                this["password"] = value;
+                this["RabbitMQ_Password"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("exchange_name")]
-        public string exchangeName {
+        public string RabbitMQ_ExchangeName {
             get {
-                return ((string)(this["exchangeName"]));
+                return ((string)(this["RabbitMQ_ExchangeName"]));
             }
             set {
-                this["exchangeName"] = value;
+                this["RabbitMQ_ExchangeName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("queue_name")]
-        public string queueName {
+        public string RabbitMQ_QueueName {
             get {
-                return ((string)(this["queueName"]));
+                return ((string)(this["RabbitMQ_QueueName"]));
             }
             set {
-                this["queueName"] = value;
+                this["RabbitMQ_QueueName"] = value;
             }
         }
         

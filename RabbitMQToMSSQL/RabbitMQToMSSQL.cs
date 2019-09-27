@@ -28,17 +28,17 @@ namespace RabbitMQToMSSQL
         {
             try
             {
-                //db = new SQLDB(Properties.Settings.Default.MSSQLSRV_ServerName, Properties.Settings.Default.MSSQLSRV_DBName, Properties.Settings.Default.MSSQLSRV_UserName, Properties.Settings.Default.MSSQLSRV_Password);
+                db = new SQLDB(Properties.Settings.Default.MSSQLSRV_ServerName, Properties.Settings.Default.MSSQLSRV_DBName, Properties.Settings.Default.MSSQLSRV_UserName, Properties.Settings.Default.MSSQLSRV_Password);
 
                 rabbit = new RabbitMQ_Connect(
                     Callback,
-                    Properties.Settings.Default.hostname,
-                    Properties.Settings.Default.port,
-                    Properties.Settings.Default.virtualhost,
-                    Properties.Settings.Default.username,
-                    Properties.Settings.Default.password,
-                    Properties.Settings.Default.queueName,
-                    Properties.Settings.Default.exchangeName
+                    Properties.Settings.Default.RabbitMQ_HostName,
+                    Properties.Settings.Default.RabbitMQ_Port,
+                    Properties.Settings.Default.RabbitMQ_VirtualHost,
+                    Properties.Settings.Default.RabbitMQ_UserName,
+                    Properties.Settings.Default.RabbitMQ_Password,
+                    Properties.Settings.Default.RabbitMQ_QueueName,
+                    Properties.Settings.Default.RabbitMQ_ExchangeName
                 );
 
                 try

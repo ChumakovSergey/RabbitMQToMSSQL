@@ -26,24 +26,24 @@ namespace RabbitMQToMSSQL.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string RabbitMQ_HostName {
+        public string RabbitMQ_Hostname {
             get {
-                return ((string)(this["RabbitMQ_HostName"]));
+                return ((string)(this["RabbitMQ_Hostname"]));
             }
             set {
-                this["RabbitMQ_HostName"] = value;
+                this["RabbitMQ_Hostname"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("/")]
-        public string RabbitMQ_VirtualHost {
+        public string RabbitMQ_Virtualhost {
             get {
-                return ((string)(this["RabbitMQ_VirtualHost"]));
+                return ((string)(this["RabbitMQ_Virtualhost"]));
             }
             set {
-                this["RabbitMQ_VirtualHost"] = value;
+                this["RabbitMQ_Virtualhost"] = value;
             }
         }
         
@@ -62,12 +62,12 @@ namespace RabbitMQToMSSQL.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("guest")]
-        public string RabbitMQ_UserName {
+        public string RabbitMQ_Username {
             get {
-                return ((string)(this["RabbitMQ_UserName"]));
+                return ((string)(this["RabbitMQ_Username"]));
             }
             set {
-                this["RabbitMQ_UserName"] = value;
+                this["RabbitMQ_Username"] = value;
             }
         }
         
@@ -85,7 +85,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("exchange_name")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test_ex")]
         public string RabbitMQ_ExchangeName {
             get {
                 return ((string)(this["RabbitMQ_ExchangeName"]));
@@ -97,7 +97,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("queue_name")]
+        [global::System.Configuration.DefaultSettingValueAttribute("test_queue")]
         public string RabbitMQ_QueueName {
             get {
                 return ((string)(this["RabbitMQ_QueueName"]));
@@ -109,7 +109,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("srv_name")]
         public string MSSQLSRV_ServerName {
             get {
                 return ((string)(this["MSSQLSRV_ServerName"]));
@@ -121,7 +121,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("user")]
         public string MSSQLSRV_UserName {
             get {
                 return ((string)(this["MSSQLSRV_UserName"]));
@@ -133,7 +133,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("password")]
         public string MSSQLSRV_Password {
             get {
                 return ((string)(this["MSSQLSRV_Password"]));
@@ -145,7 +145,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DB_name")]
         public string MSSQLSRV_DBName {
             get {
                 return ((string)(this["MSSQLSRV_DBName"]));
@@ -157,7 +157,7 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FunctionName")]
         public string MSSQLSRV_FunctionName {
             get {
                 return ((string)(this["MSSQLSRV_FunctionName"]));

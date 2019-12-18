@@ -32,10 +32,10 @@ namespace RabbitMQToMSSQL
 
                 rabbit = new RabbitMQ_Connect(
                     Callback,
-                    Properties.Settings.Default.RabbitMQ_HostName,
+                    Properties.Settings.Default.RabbitMQ_Hostname,
                     Properties.Settings.Default.RabbitMQ_Port,
-                    Properties.Settings.Default.RabbitMQ_VirtualHost,
-                    Properties.Settings.Default.RabbitMQ_UserName,
+                    Properties.Settings.Default.RabbitMQ_Virtualhost,
+                    Properties.Settings.Default.RabbitMQ_Username,
                     Properties.Settings.Default.RabbitMQ_Password,
                     Properties.Settings.Default.RabbitMQ_QueueName,
                     Properties.Settings.Default.RabbitMQ_ExchangeName
@@ -54,17 +54,21 @@ namespace RabbitMQToMSSQL
                             ", Password=" + rabbit.Password +
                             ", QueueName=" + rabbit.QueueName +
                             ", ExchangeName=" + rabbit.ExchangeName;
-                    ErrorLog(ex.Message, new StackTrace(ex, true).ToString(), conf);
+                    ErrorLog("In rabbit.Start(false) " + ex.Message, new StackTrace(ex, true).ToString(), conf);
                     this.Stop();
                 }
             }
             catch (Exception e)
             {
-                using (StreamWriter f = new StreamWriter(Properties.Settings.Default.ErrorLogPath, true))
-                {
-                    f.WriteLine(DateTime.Now.ToString() + " -- " + e.Message);
-                    f.Close();
-                }
+                string conf = "HostName=" + Properties.Settings.Default.RabbitMQ_Hostname +
+                            ", Port=" + Properties.Settings.Default.RabbitMQ_Port.ToString() +
+                            ", VirtualHost=" + Properties.Settings.Default.RabbitMQ_Virtualhost +
+                            ", Username=" + Properties.Settings.Default.RabbitMQ_Username +
+                            ", Password=" + Properties.Settings.Default.RabbitMQ_Password +
+                            ", QueueName=" + Properties.Settings.Default.RabbitMQ_QueueName +
+                            ", ExchangeName=" + Properties.Settings.Default.RabbitMQ_ExchangeName;
+                ErrorLog("In new RabbitMQ_Connect() " + e.Message, new StackTrace(e, true).ToString(), conf);
+                this.Stop();
             }
         }
 
@@ -80,22 +84,21 @@ namespace RabbitMQToMSSQL
             try
             {
                 result = db.Execute(Properties.Settings.Default.MSSQLSRV_FunctionName, inputStr);
+                ErrorLog("success", inputStr);
             }
             catch (Exception ex)
             {
                 ErrorLog(ex.Message, new StackTrace(ex, true).ToString());
             }
             if (null != result)
-            {
                 rabbit.Reply(result, ea.BasicProperties);
-                rabbit.BasicAck(ea);
-            }
-            }
+            rabbit.BasicAck(ea);
+        }
         void ErrorLog(string message, string strStackTrace, string conf = null)
         {
             using (StreamWriter f = new StreamWriter(Properties.Settings.Default.ErrorLogPath, true))
             {
-                string line = DateTime.Now.ToString() + " -- " + "Ошибка: \"" + message + "\" in StackTrace(" + strStackTrace + ")";
+                string line = DateTime.Now.ToString() + " -- " + "Error: \"" + message + "\" in StackTrace(" + strStackTrace + ")";
                 if (conf != null)
                     line += "\r\n" + conf;
                 f.WriteLine(line);

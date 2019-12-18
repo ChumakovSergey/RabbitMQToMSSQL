@@ -40,9 +40,11 @@ namespace RabbitMQToMSSQL
                 string sql = "exec " + functionName + " N'" + functionInputVariable + "'";
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 //Выполняем запрос
-                string paymentID = cmd.ExecuteScalar().ToString();
+                string result = null;
+                if (cmd.ExecuteScalar() != null)
+                    result = cmd.ExecuteScalar().ToString();
                 connection.Close();
-                return paymentID;
+                return result;
             }
         }
 

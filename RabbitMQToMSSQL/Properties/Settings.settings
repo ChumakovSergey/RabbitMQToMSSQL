@@ -2,41 +2,41 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RabbitMQToMSSQL.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="RabbitMQ_HostName" Type="System.String" Scope="User">
+    <Setting Name="RabbitMQ_Hostname" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
-    <Setting Name="RabbitMQ_VirtualHost" Type="System.String" Scope="User">
+    <Setting Name="RabbitMQ_Virtualhost" Type="System.String" Scope="User">
       <Value Profile="(Default)">/</Value>
     </Setting>
     <Setting Name="RabbitMQ_Port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5672</Value>
     </Setting>
-    <Setting Name="RabbitMQ_UserName" Type="System.String" Scope="User">
+    <Setting Name="RabbitMQ_Username" Type="System.String" Scope="User">
       <Value Profile="(Default)">guest</Value>
     </Setting>
     <Setting Name="RabbitMQ_Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">guest</Value>
     </Setting>
     <Setting Name="RabbitMQ_ExchangeName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">exchange_name</Value>
+      <Value Profile="(Default)">test_ex</Value>
     </Setting>
     <Setting Name="RabbitMQ_QueueName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">queue_name</Value>
+      <Value Profile="(Default)">test_queue</Value>
     </Setting>
     <Setting Name="MSSQLSRV_ServerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">srv_name</Value>
     </Setting>
     <Setting Name="MSSQLSRV_UserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">user</Value>
     </Setting>
     <Setting Name="MSSQLSRV_Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">password</Value>
     </Setting>
     <Setting Name="MSSQLSRV_DBName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">DB_name</Value>
     </Setting>
     <Setting Name="MSSQLSRV_FunctionName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">FunctionName</Value>
     </Setting>
     <Setting Name="ErrorLogPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Error.log</Value>

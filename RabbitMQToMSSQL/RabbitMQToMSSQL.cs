@@ -18,7 +18,7 @@ namespace RabbitMQToMSSQL
     public partial class RabbitMQToMSSQL : ServiceBase
     {
         private RabbitMQ_Connect[] RabbitMQ_Connections;
-        private Settings settings;
+        private Config config;
         public RabbitMQToMSSQL()
         {
             InitializeComponent();
@@ -28,11 +28,11 @@ namespace RabbitMQToMSSQL
         {
             try
             {
-                using (StreamReader r = new StreamReader(Properties.Settings.Default.RoutesPath))
+                using (StreamReader r = new StreamReader(Properties.Settings.Default.ConfigFilePath))
                 {
                     string json = r.ReadToEnd();
-                    this.settings = JsonConvert.DeserializeObject<Settings>(json);
-                    this.RabbitMQ_Connections = new RabbitMQ_Connect[settings.Routes.Length];
+                    this.config = JsonConvert.DeserializeObject<Config>(json);
+                    this.RabbitMQ_Connections = new RabbitMQ_Connect[config.Routes.Length];
                 }
                 for (int i = 0; i < RabbitMQ_Connections.Length; i++)
                 {
@@ -40,20 +40,21 @@ namespace RabbitMQToMSSQL
                     {
                         RabbitMQ_Connections[i] = new RabbitMQ_Connect(
                             new SQLDB(
-                                settings.Routes[i].MSSQLSRV_ServerName,
-                                settings.Routes[i].MSSQLSRV_DBName,
-                                settings.Routes[i].MSSQLSRV_UserName,
-                                settings.Routes[i].MSSQLSRV_Password,
-                                settings.Routes[i].MSSQLSRV_FunctionName
+                                config.Routes[i].MSSQLSRV_ServerName,
+                                config.Routes[i].MSSQLSRV_DBName,
+                                config.Routes[i].MSSQLSRV_UserName,
+                                config.Routes[i].MSSQLSRV_Password,
+                                config.Routes[i].MSSQLSRV_FunctionName,
+                                config.Routes[i].MSSQLSRV_UseNvarchar
                             ),
                             Callback,
-                            settings.Routes[i].RabbitMQ_Hostname,
-                            settings.Routes[i].RabbitMQ_Port,
-                            settings.Routes[i].RabbitMQ_Virtualhost,
-                            settings.Routes[i].RabbitMQ_Username,
-                            settings.Routes[i].RabbitMQ_Password,
-                            settings.Routes[i].RabbitMQ_QueueName,
-                            settings.Routes[i].RabbitMQ_ExchangeName
+                            config.Routes[i].RabbitMQ_Hostname,
+                            config.Routes[i].RabbitMQ_Port,
+                            config.Routes[i].RabbitMQ_Virtualhost,
+                            config.Routes[i].RabbitMQ_Username,
+                            config.Routes[i].RabbitMQ_Password,
+                            config.Routes[i].RabbitMQ_QueueName,
+                            config.Routes[i].RabbitMQ_ExchangeName
                         );
                         try
                         {
@@ -74,13 +75,13 @@ namespace RabbitMQToMSSQL
                     }
                     catch (Exception e)
                     {
-                        string conf = "HostName=" + settings.Routes[i].RabbitMQ_Hostname +
-                                    ", Port=" + settings.Routes[i].RabbitMQ_Port.ToString() +
-                                    ", VirtualHost=" + settings.Routes[i].RabbitMQ_Virtualhost +
-                                    ", Username=" + settings.Routes[i].RabbitMQ_Username +
-                                    ", Password=" + settings.Routes[i].RabbitMQ_Password +
-                                    ", QueueName=" + settings.Routes[i].RabbitMQ_QueueName +
-                                    ", ExchangeName=" + settings.Routes[i].RabbitMQ_ExchangeName;
+                        string conf = "HostName=" + config.Routes[i].RabbitMQ_Hostname +
+                                    ", Port=" + config.Routes[i].RabbitMQ_Port.ToString() +
+                                    ", VirtualHost=" + config.Routes[i].RabbitMQ_Virtualhost +
+                                    ", Username=" + config.Routes[i].RabbitMQ_Username +
+                                    ", Password=" + config.Routes[i].RabbitMQ_Password +
+                                    ", QueueName=" + config.Routes[i].RabbitMQ_QueueName +
+                                    ", ExchangeName=" + config.Routes[i].RabbitMQ_ExchangeName;
                         ErrorLog("In new RabbitMQ_Connect() " + e.Message, new StackTrace(e, true).ToString(), conf);
                         this.Stop();
                     }
@@ -88,7 +89,7 @@ namespace RabbitMQToMSSQL
             }
             catch (Exception e)
             {
-                ErrorLog("In new load settings file. With message: " + e.Message, new StackTrace(e, true).ToString());
+                ErrorLog("In new load config file. With message: " + e.Message, new StackTrace(e, true).ToString());
                 this.Stop();
             }
         }

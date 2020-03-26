@@ -12,6 +12,7 @@ namespace RabbitMQToMSSQL
     {
         public string ConnectionString { get; }
         private string functionName;
+        private bool useNvarchar;
         /// <summary>
         /// Создает объект операций с БД SQL на сервере PotrebDB
         /// </summary>
@@ -20,13 +21,15 @@ namespace RabbitMQToMSSQL
         /// <param name="UserName">Имя пользователя</param>
         /// <param name="Password">Пароль</param>
         /// <param name="functionName">Функция, вызываемая в процедуре Execute</param>
-        public SQLDB(string ServerName, string DBName, string UserName, string Password, string functionName)
+        /// <param name="useNvarchar">Использование nvarchar типа входного параметра для функции</param>
+        public SQLDB(string ServerName, string DBName, string UserName, string Password, string functionName, bool useNvarchar = false)
         {
             this.ConnectionString = "Persist Security Info=False;" +
                                 "User ID=" + UserName + ";Password=" + Password + ";" +
                                 "Initial Catalog=" + DBName + ";" +
                                 "Server=" + ServerName;
             this.functionName = functionName;
+            this.useNvarchar = useNvarchar;
         }
         /// <summary>
         /// Выполняет функцию SQL-сервера
@@ -39,7 +42,8 @@ namespace RabbitMQToMSSQL
             using (SqlConnection connection = new SqlConnection(this.ConnectionString))
             {
                 connection.Open();
-                string sql = "exec " + this.functionName + " N'" + functionInputVariable.Replace("'", "''") + "'";
+                string N = this.useNvarchar ? "N" : "";
+                string sql = "exec " + this.functionName + " "+ N + "'" + functionInputVariable.Replace("'", "''") + "'";
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 //Выполняем запрос
                 string result = null;

@@ -1,7 +1,6 @@
 {
-  "ErrorLogPath": "C:/Error.log",
   "Routes": [
-    //One or more servers
+    //One or more routers
     {
       "RabbitMQ_Hostname": "rabbitmq-server-host",
       "RabbitMQ_Virtualhost": "/",
@@ -14,7 +13,8 @@
       "MSSQLSRV_UserName": "username",
       "MSSQLSRV_Password": "password",
       "MSSQLSRV_DBName": "db-name",
-      "MSSQLSRV_FunctionName": "function-name"
+      "MSSQLSRV_FunctionName": "function-name",
+      "MSSQLSRV_UseNvarchar": true //Default false. If true than call exec MSSQLSRV_FunctionName N'' else call exec MSSQLSRV_FunctionName ''
     }
   ]
 }

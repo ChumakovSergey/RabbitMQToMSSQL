@@ -5,8 +5,8 @@
     <Setting Name="ErrorLogPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\RabbitMQToMSSQLError.log</Value>
     </Setting>
-    <Setting Name="RoutesPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Чумаков\source\repos\RabbitMQToMSSQL\RabbitMQToMSSQL\bin\Release\routes.json</Value>
+    <Setting Name="ConfigFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PathToYourConfigFile</Value>
     </Setting>
   </Settings>
 </SettingsFile>

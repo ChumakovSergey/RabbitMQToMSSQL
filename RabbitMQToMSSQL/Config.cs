@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace RabbitMQToMSSQL
 {
-    class Settings
+    class Config
     {
-        public string ErrorLogPath { get; }
         public Route[] Routes { get; }
-        public Settings(string ErrorLogPath, Route[] Routes)
+        public Config(string ErrorLogPath, Route[] Routes)
         {
-            this.ErrorLogPath = ErrorLogPath;
             this.Routes = Routes;
         }
     }
@@ -30,8 +28,9 @@ namespace RabbitMQToMSSQL
         public string MSSQLSRV_Password { get; }
         public string MSSQLSRV_DBName { get; }
         public string MSSQLSRV_FunctionName { get; }
+        public bool MSSQLSRV_UseNvarchar { get; }
 
-        public Route(string rabbitMQ_Hostname, string rabbitMQ_Virtualhost, int rabbitMQ_Port, string rabbitMQ_Username, string rabbitMQ_Password, string rabbitMQ_ExchangeName, string rabbitMQ_QueueName, string mSSQLSRV_ServerName, string mSSQLSRV_UserName, string mSSQLSRV_Password, string mSSQLSRV_DBName, string mSSQLSRV_FunctionName)
+        public Route(string rabbitMQ_Hostname, string rabbitMQ_Virtualhost, int rabbitMQ_Port, string rabbitMQ_Username, string rabbitMQ_Password, string rabbitMQ_ExchangeName, string rabbitMQ_QueueName, string mSSQLSRV_ServerName, string mSSQLSRV_UserName, string mSSQLSRV_Password, string mSSQLSRV_DBName, string mSSQLSRV_FunctionName, bool mSSQLSRV_UseNvarchar = false)
         {
             RabbitMQ_Hostname = rabbitMQ_Hostname;
             RabbitMQ_Virtualhost = rabbitMQ_Virtualhost;
@@ -45,6 +44,7 @@ namespace RabbitMQToMSSQL
             MSSQLSRV_Password = mSSQLSRV_Password;
             MSSQLSRV_DBName = mSSQLSRV_DBName;
             MSSQLSRV_FunctionName = mSSQLSRV_FunctionName;
+            MSSQLSRV_UseNvarchar = mSSQLSRV_UseNvarchar;
         }
     }
 }

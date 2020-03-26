@@ -37,14 +37,13 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Чумаков\\source\\repos\\RabbitMQToMSSQL\\RabbitMQToMSSQL\\bin\\Release\\routes." +
-            "json")]
-        public string RoutesPath {
+        [global::System.Configuration.DefaultSettingValueAttribute("PathToYourConfigFile")]
+        public string ConfigFilePath {
             get {
-                return ((string)(this["RoutesPath"]));
+                return ((string)(this["ConfigFilePath"]));
             }
             set {
-                this["RoutesPath"] = value;
+                this["ConfigFilePath"] = value;
             }
         }
     }

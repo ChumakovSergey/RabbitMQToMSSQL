@@ -12,46 +12,40 @@ namespace RabbitMQToMSSQL
 {
     class RabbitMQ_Connect
     {
-        private string hostName;
-        private string virtualHost;
-        private int port;
-        private string username;
-        private string password;
-        private string exchangeName;
-        private string queueName;
-
         private Action<RabbitMQ_Connect, object, BasicDeliverEventArgs> callback;
 
         private ConnectionFactory factory;
         private IConnection connection;
         private IModel channel;
 
-        public string HostName { get => hostName; }
-        public string VirtualHost { get => virtualHost; }
-        public int Port { get => port; }
-        public string Username { get => username; }
-        public string Password { get => password; }
-        public string ExchangeName { get => exchangeName; }
-        public string QueueName { get => queueName; }
-
-        public RabbitMQ_Connect(Action<RabbitMQ_Connect, object, BasicDeliverEventArgs> callback, string hostName, int port, string virtualHost, string username, string password, string queueName, string exchangeName = "")
+        public SQLDB DB { get; }
+        public string HostName { get; }
+        public string VirtualHost { get; }
+        public int Port { get; }
+        public string Username { get; }
+        public string Password { get; }
+        public string ExchangeName { get; }
+        public string QueueName { get; }
+        
+        public RabbitMQ_Connect(SQLDB db, Action<RabbitMQ_Connect, object, BasicDeliverEventArgs> callback, string hostName, int port, string virtualHost, string username, string password, string queueName, string exchangeName = "")
         {
+            this.DB = db;
             this.callback = callback;
-            this.hostName = hostName;
-            this.port = port;
-            this.virtualHost = virtualHost;
-            this.username = username;
-            this.password = password;
-            this.queueName = queueName;
-            this.exchangeName = exchangeName;
+            this.HostName = hostName;
+            this.Port = port;
+            this.VirtualHost = virtualHost;
+            this.Username = username;
+            this.Password = password;
+            this.QueueName = queueName;
+            this.ExchangeName = exchangeName;
 
             this.factory = new ConnectionFactory()
             {
-                UserName = this.username,
-                Password = this.password,
-                VirtualHost = this.virtualHost,
-                HostName = this.hostName,
-                Port = this.port
+                UserName = this.Username,
+                Password = this.Password,
+                VirtualHost = this.VirtualHost,
+                HostName = this.HostName,
+                Port = this.Port
             };
             this.connection = this.factory.CreateConnection();
         }
@@ -61,7 +55,7 @@ namespace RabbitMQToMSSQL
             this.channel = this.connection.CreateModel();
             EventingBasicConsumer consumer = new EventingBasicConsumer(this.channel);
             consumer.Received += (model, ea) => { this.callback(this, model, ea); };
-            channel.BasicConsume(queue: this.queueName,
+            channel.BasicConsume(queue: this.QueueName,
                                  autoAck: autoAck,
                                  consumer: consumer);
         }
@@ -81,14 +75,14 @@ namespace RabbitMQToMSSQL
             byte[] body = Encoding.UTF8.GetBytes(message);
             try
             {
-                this.channel.BasicPublish(exchange: this.exchangeName,
+                this.channel.BasicPublish(exchange: this.ExchangeName,
                                      routingKey: prop.ReplyTo,
                                      basicProperties: prop,
                                      body: body);
             }
             catch (System.ArgumentNullException ex)
             {
-                string mess = ex.Message + " throw in Reply()! exchange=" + this.exchangeName +
+                string mess = ex.Message + " throw in Reply()! exchange=" + this.ExchangeName +
                         ", routingKey=" + prop.ReplyTo +
                         ", basicProperties=" + prop.ToString() +
                         ", message=" + message;

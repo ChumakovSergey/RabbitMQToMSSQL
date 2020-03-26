@@ -25,157 +25,26 @@ namespace RabbitMQToMSSQL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string RabbitMQ_Hostname {
-            get {
-                return ((string)(this["RabbitMQ_Hostname"]));
-            }
-            set {
-                this["RabbitMQ_Hostname"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("/")]
-        public string RabbitMQ_Virtualhost {
-            get {
-                return ((string)(this["RabbitMQ_Virtualhost"]));
-            }
-            set {
-                this["RabbitMQ_Virtualhost"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5672")]
-        public int RabbitMQ_Port {
-            get {
-                return ((int)(this["RabbitMQ_Port"]));
-            }
-            set {
-                this["RabbitMQ_Port"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("guest")]
-        public string RabbitMQ_Username {
-            get {
-                return ((string)(this["RabbitMQ_Username"]));
-            }
-            set {
-                this["RabbitMQ_Username"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("guest")]
-        public string RabbitMQ_Password {
-            get {
-                return ((string)(this["RabbitMQ_Password"]));
-            }
-            set {
-                this["RabbitMQ_Password"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test_ex")]
-        public string RabbitMQ_ExchangeName {
-            get {
-                return ((string)(this["RabbitMQ_ExchangeName"]));
-            }
-            set {
-                this["RabbitMQ_ExchangeName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test_queue")]
-        public string RabbitMQ_QueueName {
-            get {
-                return ((string)(this["RabbitMQ_QueueName"]));
-            }
-            set {
-                this["RabbitMQ_QueueName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("srv_name")]
-        public string MSSQLSRV_ServerName {
-            get {
-                return ((string)(this["MSSQLSRV_ServerName"]));
-            }
-            set {
-                this["MSSQLSRV_ServerName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("user")]
-        public string MSSQLSRV_UserName {
-            get {
-                return ((string)(this["MSSQLSRV_UserName"]));
-            }
-            set {
-                this["MSSQLSRV_UserName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("password")]
-        public string MSSQLSRV_Password {
-            get {
-                return ((string)(this["MSSQLSRV_Password"]));
-            }
-            set {
-                this["MSSQLSRV_Password"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DB_name")]
-        public string MSSQLSRV_DBName {
-            get {
-                return ((string)(this["MSSQLSRV_DBName"]));
-            }
-            set {
-                this["MSSQLSRV_DBName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FunctionName")]
-        public string MSSQLSRV_FunctionName {
-            get {
-                return ((string)(this["MSSQLSRV_FunctionName"]));
-            }
-            set {
-                this["MSSQLSRV_FunctionName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Error.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\RabbitMQToMSSQLError.log")]
         public string ErrorLogPath {
             get {
                 return ((string)(this["ErrorLogPath"]));
             }
             set {
                 this["ErrorLogPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Чумаков\\source\\repos\\RabbitMQToMSSQL\\RabbitMQToMSSQL\\bin\\Release\\routes." +
+            "json")]
+        public string RoutesPath {
+            get {
+                return ((string)(this["RoutesPath"]));
+            }
+            set {
+                this["RoutesPath"] = value;
             }
         }
     }

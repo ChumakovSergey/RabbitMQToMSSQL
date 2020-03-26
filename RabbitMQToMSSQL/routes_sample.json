@@ -1,0 +1,20 @@
+{
+  "ErrorLogPath": "C:/Error.log",
+  "Routes": [
+    //One or more servers
+    {
+      "RabbitMQ_Hostname": "rabbitmq-server-host",
+      "RabbitMQ_Virtualhost": "/",
+      "RabbitMQ_Port": "5672",
+      "RabbitMQ_Username": "guest",
+      "RabbitMQ_Password": "guest",
+      "RabbitMQ_ExchangeName": "",
+      "RabbitMQ_QueueName": "queue_name",
+      "MSSQLSRV_ServerName": "sql-server-host",
+      "MSSQLSRV_UserName": "username",
+      "MSSQLSRV_Password": "password",
+      "MSSQLSRV_DBName": "db-name",
+      "MSSQLSRV_FunctionName": "function-name"
+    }
+  ]
+}

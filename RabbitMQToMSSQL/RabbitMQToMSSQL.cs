@@ -11,14 +11,14 @@ using System.Threading;
 using System.IO;
 using RabbitMQ;
 using RabbitMQ.Client.Events;
+using Newtonsoft.Json;
 
 namespace RabbitMQToMSSQL
 {
     public partial class RabbitMQToMSSQL : ServiceBase
     {
-        private RabbitMQ_Connect rabbit;
-        private SQLDB db;
-
+        private RabbitMQ_Connect[] RabbitMQ_Connections;
+        private Settings settings;
         public RabbitMQToMSSQL()
         {
             InitializeComponent();
@@ -28,53 +28,75 @@ namespace RabbitMQToMSSQL
         {
             try
             {
-                db = new SQLDB(Properties.Settings.Default.MSSQLSRV_ServerName, Properties.Settings.Default.MSSQLSRV_DBName, Properties.Settings.Default.MSSQLSRV_UserName, Properties.Settings.Default.MSSQLSRV_Password);
-
-                rabbit = new RabbitMQ_Connect(
-                    Callback,
-                    Properties.Settings.Default.RabbitMQ_Hostname,
-                    Properties.Settings.Default.RabbitMQ_Port,
-                    Properties.Settings.Default.RabbitMQ_Virtualhost,
-                    Properties.Settings.Default.RabbitMQ_Username,
-                    Properties.Settings.Default.RabbitMQ_Password,
-                    Properties.Settings.Default.RabbitMQ_QueueName,
-                    Properties.Settings.Default.RabbitMQ_ExchangeName
-                );
-
-                try
+                using (StreamReader r = new StreamReader(Properties.Settings.Default.RoutesPath))
                 {
-                    rabbit.Start(false);
+                    string json = r.ReadToEnd();
+                    this.settings = JsonConvert.DeserializeObject<Settings>(json);
+                    this.RabbitMQ_Connections = new RabbitMQ_Connect[settings.Routes.Length];
                 }
-                catch (Exception ex)
+                for (int i = 0; i < RabbitMQ_Connections.Length; i++)
                 {
-                    string conf = "HostName=" + rabbit.HostName +
-                            ", Port=" + rabbit.Port.ToString() +
-                            ", VirtualHost=" + rabbit.VirtualHost +
-                            ", Username=" + rabbit.Username +
-                            ", Password=" + rabbit.Password +
-                            ", QueueName=" + rabbit.QueueName +
-                            ", ExchangeName=" + rabbit.ExchangeName;
-                    ErrorLog("In rabbit.Start(false) " + ex.Message, new StackTrace(ex, true).ToString(), conf);
-                    this.Stop();
+                    try
+                    {
+                        RabbitMQ_Connections[i] = new RabbitMQ_Connect(
+                            new SQLDB(
+                                settings.Routes[i].MSSQLSRV_ServerName,
+                                settings.Routes[i].MSSQLSRV_DBName,
+                                settings.Routes[i].MSSQLSRV_UserName,
+                                settings.Routes[i].MSSQLSRV_Password,
+                                settings.Routes[i].MSSQLSRV_FunctionName
+                            ),
+                            Callback,
+                            settings.Routes[i].RabbitMQ_Hostname,
+                            settings.Routes[i].RabbitMQ_Port,
+                            settings.Routes[i].RabbitMQ_Virtualhost,
+                            settings.Routes[i].RabbitMQ_Username,
+                            settings.Routes[i].RabbitMQ_Password,
+                            settings.Routes[i].RabbitMQ_QueueName,
+                            settings.Routes[i].RabbitMQ_ExchangeName
+                        );
+                        try
+                        {
+                            RabbitMQ_Connections[i].Start(false);
+                        }
+                        catch (Exception ex)
+                        {
+                            string conf = "HostName=" + RabbitMQ_Connections[i].HostName +
+                                    ", Port=" + RabbitMQ_Connections[i].Port.ToString() +
+                                    ", VirtualHost=" + RabbitMQ_Connections[i].VirtualHost +
+                                    ", Username=" + RabbitMQ_Connections[i].Username +
+                                    ", Password=" + RabbitMQ_Connections[i].Password +
+                                    ", QueueName=" + RabbitMQ_Connections[i].QueueName +
+                                    ", ExchangeName=" + RabbitMQ_Connections[i].ExchangeName;
+                            ErrorLog("In RabbitMQ_Connections[" + i.ToString() + "].Start(false) " + ex.Message, new StackTrace(ex, true).ToString(), conf);
+                            this.Stop();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        string conf = "HostName=" + settings.Routes[i].RabbitMQ_Hostname +
+                                    ", Port=" + settings.Routes[i].RabbitMQ_Port.ToString() +
+                                    ", VirtualHost=" + settings.Routes[i].RabbitMQ_Virtualhost +
+                                    ", Username=" + settings.Routes[i].RabbitMQ_Username +
+                                    ", Password=" + settings.Routes[i].RabbitMQ_Password +
+                                    ", QueueName=" + settings.Routes[i].RabbitMQ_QueueName +
+                                    ", ExchangeName=" + settings.Routes[i].RabbitMQ_ExchangeName;
+                        ErrorLog("In new RabbitMQ_Connect() " + e.Message, new StackTrace(e, true).ToString(), conf);
+                        this.Stop();
+                    }
                 }
             }
             catch (Exception e)
             {
-                string conf = "HostName=" + Properties.Settings.Default.RabbitMQ_Hostname +
-                            ", Port=" + Properties.Settings.Default.RabbitMQ_Port.ToString() +
-                            ", VirtualHost=" + Properties.Settings.Default.RabbitMQ_Virtualhost +
-                            ", Username=" + Properties.Settings.Default.RabbitMQ_Username +
-                            ", Password=" + Properties.Settings.Default.RabbitMQ_Password +
-                            ", QueueName=" + Properties.Settings.Default.RabbitMQ_QueueName +
-                            ", ExchangeName=" + Properties.Settings.Default.RabbitMQ_ExchangeName;
-                ErrorLog("In new RabbitMQ_Connect() " + e.Message, new StackTrace(e, true).ToString(), conf);
+                ErrorLog("In new load settings file. With message: " + e.Message, new StackTrace(e, true).ToString());
                 this.Stop();
             }
         }
 
         protected override void OnStop()
         {
-            rabbit.Stop();
+            foreach(RabbitMQ_Connect rabbit in RabbitMQ_Connections)
+                rabbit.Stop();
         }
         private void Callback(RabbitMQ_Connect rabbit, object model, BasicDeliverEventArgs ea)
         {
@@ -83,16 +105,15 @@ namespace RabbitMQToMSSQL
             string result = null;
             try
             {
-                result = db.Execute(Properties.Settings.Default.MSSQLSRV_FunctionName, inputStr);
-                ErrorLog("success", inputStr);
+                result = rabbit.DB.Execute(inputStr);
+                if (null != result)
+                    rabbit.Reply(result, ea.BasicProperties);
+                rabbit.BasicAck(ea);
             }
             catch (Exception ex)
             {
-                ErrorLog(ex.Message, new StackTrace(ex, true).ToString());
+                ErrorLog(ex.Message, new StackTrace(ex, true).ToString(),rabbit.DB.ConnectionString);
             }
-            if (null != result)
-                rabbit.Reply(result, ea.BasicProperties);
-            rabbit.BasicAck(ea);
         }
         void ErrorLog(string message, string strStackTrace, string conf = null)
         {
@@ -100,7 +121,7 @@ namespace RabbitMQToMSSQL
             {
                 string line = DateTime.Now.ToString() + " -- " + "Error: \"" + message + "\" in StackTrace(" + strStackTrace + ")";
                 if (conf != null)
-                    line += "\r\n" + conf;
+                    line += "\r\nConfiguration: " + conf;
                 f.WriteLine(line);
                 f.Close();
             }

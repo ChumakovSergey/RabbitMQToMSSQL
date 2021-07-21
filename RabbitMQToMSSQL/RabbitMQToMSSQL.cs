@@ -12,6 +12,7 @@ using System.IO;
 using RabbitMQ;
 using RabbitMQ.Client.Events;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 namespace RabbitMQToMSSQL
 {
@@ -103,10 +104,9 @@ namespace RabbitMQToMSSQL
         {
             var body = ea.Body;
             string inputStr = Encoding.UTF8.GetString(body);
-            string result = null;
             try
             {
-                result = rabbit.DB.Execute(inputStr);
+                string result = rabbit.DB.Execute(inputStr);
                 if (null != result)
                     rabbit.Reply(result, ea.BasicProperties);
                 rabbit.BasicAck(ea);

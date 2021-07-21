@@ -72,7 +72,7 @@ MSSQL RabbitMQ listener. Listen RabitMQ queue and execution MSSQL prosedure. It 
 2. Run the command prompt **with administrator rights!**
 3. Install RabbitMQToMSSQL service with InstallUtil.exe with command: `<PathToInstallUtil.exe> <PathToRabbitMQToMSSQL.exe>`. Example:
     ```
-    C:\WINDOWS\system32>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe C:\repos\RabbitMQToMSSQL\RabbitMQToMSSQL\bin\Release\RabbitMQToMSSQL.exe
+    C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe C:\repos\RabbitMQToMSSQL\RabbitMQToMSSQL\bin\Release\RabbitMQToMSSQL.exe
     ```
    For uninstall RabbitMQToMSSQL service use that command: 
    ```

@@ -18,9 +18,9 @@ namespace RabbitMQToMSSQL
 
             processInstaller.Account = ServiceAccount.LocalSystem;
             serviceInstaller.StartType = ServiceStartMode.Manual;
-            serviceInstaller.ServiceName = "RabbitMQToMSSQL";
-            serviceInstaller.DisplayName = "RabbitMQToMSSQL";
-            serviceInstaller.Description = "Redirects messages from RabbitMQ to MSSQL Server";
+            serviceInstaller.ServiceName = Properties.Settings.Default.ServiceName;
+            serviceInstaller.DisplayName = Properties.Settings.Default.ServiceName;
+            serviceInstaller.Description = Properties.Settings.Default.ServiceDescription;
             Installers.Add(processInstaller);
             Installers.Add(serviceInstaller);
         }

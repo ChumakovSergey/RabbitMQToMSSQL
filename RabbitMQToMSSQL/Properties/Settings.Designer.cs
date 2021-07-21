@@ -12,7 +12,7 @@ namespace RabbitMQToMSSQL.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -44,6 +44,30 @@ namespace RabbitMQToMSSQL.Properties {
             }
             set {
                 this["ConfigFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("RabbitMQToMSSQL")]
+        public string ServiceName {
+            get {
+                return ((string)(this["ServiceName"]));
+            }
+            set {
+                this["ServiceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Redirects messages from RabbitMQ to MSSQL Server")]
+        public string ServiceDescription {
+            get {
+                return ((string)(this["ServiceDescription"]));
+            }
+            set {
+                this["ServiceDescription"] = value;
             }
         }
     }

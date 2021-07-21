@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.ServiceName = "RabbitMQToMSSQL";
+            this.ServiceName = Properties.Settings.Default.ServiceName;
         }
 
         #endregion

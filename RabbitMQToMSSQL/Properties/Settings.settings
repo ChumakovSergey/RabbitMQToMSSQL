@@ -8,5 +8,11 @@
     <Setting Name="ConfigFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">PathToYourConfigFile</Value>
     </Setting>
+    <Setting Name="ServiceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RabbitMQToMSSQL</Value>
+    </Setting>
+    <Setting Name="ServiceDescription" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Redirects messages from RabbitMQ to MSSQL Server</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

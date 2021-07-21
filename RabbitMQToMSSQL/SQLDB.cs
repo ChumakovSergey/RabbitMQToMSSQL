@@ -43,14 +43,16 @@ namespace RabbitMQToMSSQL
             {
                 connection.Open();
                 string N = this.useNvarchar ? "N" : "";
-                string sql = "exec " + this.functionName + " "+ N + "'" + functionInputVariable.Replace("'", "''") + "'";
+                string sql = "exec " + this.functionName + " " + N + "'" + functionInputVariable.Replace("'", "''") + "'";
                 SqlCommand cmd = new SqlCommand(sql, connection);
+                //Устанавливаем timeout 300 секунд
+                cmd.CommandTimeout = 300;
                 //Выполняем запрос
-                string result = null;
-                if (cmd.ExecuteScalar() != null)
-                    result = cmd.ExecuteScalar().ToString();
-                connection.Close();
-                return result;
+                var result = cmd.ExecuteScalar();
+                if (null != result)
+                    return result.ToString();
+                else
+                    return null;
             }
         }
 
